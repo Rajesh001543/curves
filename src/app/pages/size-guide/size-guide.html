@@ -1,0 +1,206 @@
+<div class="min-h-screen bg-cream font-sans py-16 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-4xl mx-auto">
+    
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <h1 class="text-4xl md:text-5xl font-serif text-charcoal mb-4">Size Guide</h1>
+      <p class="text-gray-500 max-w-2xl mx-auto text-lg">
+        Find your perfect fit. Our garments are designed to flatter, but knowing your exact measurements ensures a flawless look every time.
+      </p>
+    </div>
+
+    <!-- How to Measure Section -->
+    <div class="bg-white rounded-2xl p-8 md:p-12 shadow-sm border border-gray-100 mb-12">
+      <h2 class="text-2xl font-serif text-charcoal mb-8 flex items-center justify-center gap-3">
+        <lucide-icon [img]="Ruler" class="h-6 w-6 text-burgundy"></lucide-icon>
+        How to Measure
+      </h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        <div>
+          <div class="w-16 h-16 bg-blush rounded-full flex items-center justify-center mx-auto mb-4 text-burgundy font-serif text-xl font-bold">1</div>
+          <h3 class="font-bold text-gray-800 mb-2">Bust</h3>
+          <p class="text-sm text-gray-500">Measure under your arms at the fullest part of your bust. Keep the tape level.</p>
+        </div>
+        <div>
+          <div class="w-16 h-16 bg-blush rounded-full flex items-center justify-center mx-auto mb-4 text-burgundy font-serif text-xl font-bold">2</div>
+          <h3 class="font-bold text-gray-800 mb-2">Waist</h3>
+          <p class="text-sm text-gray-500">Measure around your natural waistline, keeping the tape comfortably loose.</p>
+        </div>
+        <div>
+          <div class="w-16 h-16 bg-blush rounded-full flex items-center justify-center mx-auto mb-4 text-burgundy font-serif text-xl font-bold">3</div>
+          <h3 class="font-bold text-gray-800 mb-2">Hips</h3>
+          <p class="text-sm text-gray-500">Stand with your feet together and measure around the fullest part of your hips.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Size Charts Section -->
+    <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
+      
+      <!-- Controls -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-6 mb-8 border-b border-gray-100 pb-6">
+        
+        <!-- Tabs -->
+        <div class="flex bg-gray-50 p-1 rounded-lg">
+          <button 
+            (click)="setTab('dresses')"
+            [ngClass]="activeTab === 'dresses' ? 'bg-white shadow-sm text-charcoal font-medium' : 'text-gray-500 hover:text-gray-700'"
+            class="px-6 py-2 rounded-md transition-all text-sm flex items-center gap-2"
+          >
+            <lucide-icon [img]="Shirt" class="h-4 w-4"></lucide-icon>
+            Dresses
+          </button>
+          <button 
+            (click)="setTab('tops')"
+            [ngClass]="activeTab === 'tops' ? 'bg-white shadow-sm text-charcoal font-medium' : 'text-gray-500 hover:text-gray-700'"
+            class="px-6 py-2 rounded-md transition-all text-sm flex items-center gap-2"
+          >
+            <lucide-icon [img]="Columns" class="h-4 w-4"></lucide-icon>
+            Tops
+          </button>
+          <button 
+            (click)="setTab('bottoms')"
+            [ngClass]="activeTab === 'bottoms' ? 'bg-white shadow-sm text-charcoal font-medium' : 'text-gray-500 hover:text-gray-700'"
+            class="px-6 py-2 rounded-md transition-all text-sm flex items-center gap-2"
+          >
+            Bottoms
+          </button>
+        </div>
+
+        <!-- Toggle IN/CM -->
+        <button 
+          (click)="toggleMeasurement()"
+          class="flex items-center gap-2 text-sm font-medium text-burgundy hover:text-charcoal transition-colors bg-blush px-4 py-2 rounded-full"
+        >
+          Switch to {{ measurementSystem === 'in' ? 'Centimeters (cm)' : 'Inches (in)' }}
+        </button>
+      </div>
+
+      <!-- Tables -->
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="text-xs uppercase tracking-wider text-gray-400 border-b border-gray-200">
+              <th class="pb-4 font-medium">Size</th>
+              <th class="pb-4 font-medium">US</th>
+              <th class="pb-4 font-medium">UK</th>
+              <th class="pb-4 font-medium">EU</th>
+              <th class="pb-4 font-medium">Bust</th>
+              <th class="pb-4 font-medium">Waist</th>
+              <th class="pb-4 font-medium">Hips</th>
+            </tr>
+          </thead>
+          
+          <!-- DRESSES / TOPS DATA -->
+          <tbody *ngIf="activeTab === 'dresses' || activeTab === 'tops'" class="divide-y divide-gray-100">
+            <!-- XS -->
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="py-4 font-bold text-charcoal">XS</td>
+              <td class="py-4 text-gray-600">0 - 2</td>
+              <td class="py-4 text-gray-600">4 - 6</td>
+              <td class="py-4 text-gray-600">32 - 34</td>
+              <td class="py-4 text-gray-600">{{ measurementSystem === 'in' ? '31 - 32' : '79 - 81' }}</td>
+              <td class="py-4 text-gray-600">{{ measurementSystem === 'in' ? '24 - 25' : '61 - 63.5' }}</td>
+              <td class="py-4 text-gray-600">{{ measurementSystem === 'in' ? '33 - 34' : '84 - 86' }}</td>
+            </tr>
+            <!-- S -->
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="py-4 font-bold text-charcoal">S</td>
+              <td class="py-4 text-gray-600">4 - 6</td>
+              <td class="py-4 text-gray-600">8 - 10</td>
+              <td class="py-4 text-gray-600">36 - 38</td>
+              <td class="py-4 text-gray-600">{{ measurementSystem === 'in' ? '33 - 34' : '84 - 86' }}</td>
+              <td class="py-4 text-gray-600">{{ measurementSystem === 'in' ? '26 - 27' : '66 - 68.5' }}</td>
+              <td class="py-4 text-gray-600">{{ measurementSystem === 'in' ? '35 - 36' : '89 - 91.5' }}</td>
+            </tr>
+            <!-- M -->
+            <tr class="hover:bg-gray-50 transition-colors bg-blush/20">
+              <td class="py-4 font-bold text-charcoal flex items-center gap-2">M <span class="text-[10px] bg-burgundy text-white px-2 py-0.5 rounded-full uppercase">Popular</span></td>
+              <td class="py-4 text-gray-600">8 - 10</td>
+              <td class="py-4 text-gray-600">12 - 14</td>
+              <td class="py-4 text-gray-600">40 - 42</td>
+              <td class="py-4 text-gray-600">{{ measurementSystem === 'in' ? '35 - 36' : '89 - 91.5' }}</td>
+              <td class="py-4 text-gray-600">{{ measurementSystem === 'in' ? '28 - 29' : '71 - 73.5' }}</td>
+              <td class="py-4 text-gray-600">{{ measurementSystem === 'in' ? '37 - 38' : '94 - 96.5' }}</td>
+            </tr>
+            <!-- L -->
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="py-4 font-bold text-charcoal">L</td>
+              <td class="py-4 text-gray-600">12 - 14</td>
+              <td class="py-4 text-gray-600">16 - 18</td>
+              <td class="py-4 text-gray-600">44 - 46</td>
+              <td class="py-4 text-gray-600">{{ measurementSystem === 'in' ? '37 - 39' : '94 - 99' }}</td>
+              <td class="py-4 text-gray-600">{{ measurementSystem === 'in' ? '30.5 - 32' : '77.5 - 81' }}</td>
+              <td class="py-4 text-gray-600">{{ measurementSystem === 'in' ? '39.5 - 41' : '100 - 104' }}</td>
+            </tr>
+            <!-- XL -->
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="py-4 font-bold text-charcoal">XL</td>
+              <td class="py-4 text-gray-600">16 - 18</td>
+              <td class="py-4 text-gray-600">20 - 22</td>
+              <td class="py-4 text-gray-600">48 - 50</td>
+              <td class="py-4 text-gray-600">{{ measurementSystem === 'in' ? '40 - 41.5' : '101 - 105' }}</td>
+              <td class="py-4 text-gray-600">{{ measurementSystem === 'in' ? '33.5 - 35' : '85 - 89' }}</td>
+              <td class="py-4 text-gray-600">{{ measurementSystem === 'in' ? '42.5 - 44' : '108 - 112' }}</td>
+            </tr>
+          </tbody>
+
+          <!-- BOTTOMS DATA -->
+          <tbody *ngIf="activeTab === 'bottoms'" class="divide-y divide-gray-100">
+             <!-- XS -->
+             <tr class="hover:bg-gray-50 transition-colors">
+              <td class="py-4 font-bold text-charcoal">XS</td>
+              <td class="py-4 text-gray-600">24 - 25</td>
+              <td class="py-4 text-gray-600">4 - 6</td>
+              <td class="py-4 text-gray-600">32 - 34</td>
+              <td class="py-4 text-gray-400 italic">N/A</td>
+              <td class="py-4 text-gray-600">{{ measurementSystem === 'in' ? '24 - 25' : '61 - 63.5' }}</td>
+              <td class="py-4 text-gray-600">{{ measurementSystem === 'in' ? '33 - 34' : '84 - 86' }}</td>
+            </tr>
+            <!-- S -->
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="py-4 font-bold text-charcoal">S</td>
+              <td class="py-4 text-gray-600">26 - 27</td>
+              <td class="py-4 text-gray-600">8 - 10</td>
+              <td class="py-4 text-gray-600">36 - 38</td>
+              <td class="py-4 text-gray-400 italic">N/A</td>
+              <td class="py-4 text-gray-600">{{ measurementSystem === 'in' ? '26 - 27' : '66 - 68.5' }}</td>
+              <td class="py-4 text-gray-600">{{ measurementSystem === 'in' ? '35 - 36' : '89 - 91.5' }}</td>
+            </tr>
+            <!-- M -->
+            <tr class="hover:bg-gray-50 transition-colors bg-blush/20">
+              <td class="py-4 font-bold text-charcoal flex items-center gap-2">M <span class="text-[10px] bg-burgundy text-white px-2 py-0.5 rounded-full uppercase">Popular</span></td>
+              <td class="py-4 text-gray-600">28 - 29</td>
+              <td class="py-4 text-gray-600">12 - 14</td>
+              <td class="py-4 text-gray-600">40 - 42</td>
+              <td class="py-4 text-gray-400 italic">N/A</td>
+              <td class="py-4 text-gray-600">{{ measurementSystem === 'in' ? '28 - 29' : '71 - 73.5' }}</td>
+              <td class="py-4 text-gray-600">{{ measurementSystem === 'in' ? '37 - 38' : '94 - 96.5' }}</td>
+            </tr>
+            <!-- L -->
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="py-4 font-bold text-charcoal">L</td>
+              <td class="py-4 text-gray-600">30 - 32</td>
+              <td class="py-4 text-gray-600">16 - 18</td>
+              <td class="py-4 text-gray-600">44 - 46</td>
+              <td class="py-4 text-gray-400 italic">N/A</td>
+              <td class="py-4 text-gray-600">{{ measurementSystem === 'in' ? '30.5 - 32' : '77.5 - 81' }}</td>
+              <td class="py-4 text-gray-600">{{ measurementSystem === 'in' ? '39.5 - 41' : '100 - 104' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <!-- Note -->
+    <div class="mt-8 flex items-start gap-3 bg-white p-4 rounded-xl border border-gray-100">
+      <lucide-icon [img]="Info" class="h-5 w-5 text-burgundy flex-shrink-0 mt-0.5"></lucide-icon>
+      <p class="text-sm text-gray-500">
+        If your measurements fall between two sizes, we recommend selecting the larger size for a more relaxed fit, or the smaller size for a more tailored look. For specific product fit details, please refer to the product description on the item page.
+      </p>
+    </div>
+
+  </div>
+</div>

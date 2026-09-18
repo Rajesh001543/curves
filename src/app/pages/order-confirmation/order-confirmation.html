@@ -1,0 +1,40 @@
+<div class="bg-gradient-to-b from-cream to-white min-h-screen pt-20 pb-24 flex items-center justify-center overflow-hidden relative">
+  
+  <!-- Decorative Background Elements -->
+  <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none opacity-50">
+     <!-- Elegant abstract glow -->
+     <div class="absolute -top-40 -right-40 w-96 h-96 bg-rose/40 rounded-full blur-3xl animate-pulse" style="animation-duration: 4s;"></div>
+     <div class="absolute top-60 -left-20 w-80 h-80 bg-champagne/50 rounded-full blur-3xl animate-pulse" style="animation-duration: 5s; animation-delay: 1s;"></div>
+  </div>
+
+  <div class="max-w-2xl w-full px-4 sm:px-6 lg:px-8 text-center relative z-10">
+    
+    <div class="bg-white/90 backdrop-blur-xl rounded-[2rem] shadow-2xl border border-white/50 p-10 md:p-16 transform transition-all duration-700 opacity-0 relative overflow-hidden" style="animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;">
+
+      <!-- Animated Checkmark -->
+      <div class="relative inline-flex items-center justify-center w-28 h-28 mb-10 group z-10">
+        <div class="absolute inset-0 bg-burgundy rounded-full animate-ping opacity-20" style="animation-duration: 2s;"></div>
+        <div class="relative w-full h-full bg-rose/10 rounded-full flex items-center justify-center shadow-inner">
+          <lucide-icon [img]="CheckCircle" class="h-14 w-14 text-burgundy transform group-hover:scale-110 transition-transform duration-500 opacity-0" style="animation: scaleIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s forwards;"></lucide-icon>
+        </div>
+      </div>
+      
+      <h1 class="text-5xl font-serif font-bold text-charcoal mb-4 opacity-0 relative z-10" style="animation: slideUp 0.6s ease-out 0.4s forwards;">Thank You!</h1>
+      <p class="text-xl text-gray-600 mb-2 font-light opacity-0 relative z-10" style="animation: slideUp 0.6s ease-out 0.5s forwards;">Your order has been placed successfully.</p>
+      <p class="text-gray-500 mb-10 opacity-0 relative z-10" style="animation: slideUp 0.6s ease-out 0.6s forwards;">Order Number: <span class="font-bold text-burgundy tracking-widest bg-rose/10 px-3 py-1 rounded-md ml-2">{{ orderNumber }}</span></p>
+      
+      <div class="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 mb-10 text-left border border-gray-100 shadow-sm relative overflow-hidden opacity-0" style="animation: slideUp 0.6s ease-out 0.7s forwards;">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-rose/20 rounded-full blur-2xl -mr-16 -mt-16"></div>
+        <h3 class="font-bold text-charcoal mb-4 uppercase tracking-widest text-sm relative z-10">What's Next?</h3>
+        <p class="text-gray-600 mb-4 font-light leading-relaxed relative z-10">You will receive an order confirmation email with details of your order and a secure link to track its progress in real-time.</p>
+        <p class="text-gray-600 font-light leading-relaxed relative z-10">Our artisans will now begin carefully preparing your pieces. Expected delivery is between <span class="font-medium text-charcoal">3-5 business days</span>.</p>
+      </div>
+      
+      <div class="flex flex-col sm:flex-row justify-center gap-4 opacity-0" style="animation: slideUp 0.6s ease-out 0.8s forwards;">
+        <app-button variant="primary" size="lg" customClass="!px-10 shadow-lg hover:shadow-xl transition-all" routerLink="/">Return Home</app-button>
+        <app-button variant="outline" size="lg" customClass="!px-10 bg-white" routerLink="/collections">Continue Shopping</app-button>
+      </div>
+    </div>
+    
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="min-h-screen bg-cream font-sans">
+  
+  <!-- Hero Banner -->
+  <section class="relative h-[50vh] min-h-[400px] w-full bg-burgundy flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1600&auto=format&fit=crop&q=80" alt="Sale Banner" class="w-full h-full object-cover opacity-30 mix-blend-multiply">
+      <div class="absolute inset-0 bg-gradient-to-r from-burgundy via-burgundy/80 to-transparent"></div>
+    </div>
+    
+    <div class="relative z-10 text-center px-4 max-w-3xl mx-auto">
+      <span class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white text-sm tracking-widest uppercase mb-6 border border-white/20">
+        <lucide-icon [img]="Tag" class="h-4 w-4"></lucide-icon>
+        Limited Time Offers
+      </span>
+      <h1 class="text-5xl md:text-7xl font-serif text-white mb-6 leading-tight shadow-sm">The Sale Event</h1>
+      <p class="text-gray-200 text-lg md:text-xl font-light">
+        Discover exceptional pieces at exclusive prices. Elevate your wardrobe with our curated selection of marked-down luxury.
+      </p>
+    </div>
+  </section>
+
+  <!-- Promo Code Strip -->
+  <div class="bg-charcoal text-white py-4 px-4 text-center">
+    <p class="text-sm md:text-base font-light tracking-wide flex items-center justify-center gap-2">
+      <lucide-icon [img]="Clock" class="h-5 w-5 text-rose"></lucide-icon>
+      Use code <span class="font-bold text-rose px-2">LUXE20</span> for an additional 20% off at checkout.
+    </p>
+  </div>
+
+  <!-- Offers Grid Section -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    
+    <div class="flex items-end justify-between mb-12">
+      <div>
+        <h2 class="text-3xl font-serif text-charcoal mb-2">Exclusive Reductions</h2>
+        <p class="text-gray-500">Showing {{ discountedProducts.length }} results</p>
+      </div>
+    </div>
+
+    <ng-container *ngIf="discountedProducts.length > 0; else noDiscounts">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <app-product-card 
+          *ngFor="let product of discountedProducts" 
+          [product]="product"
+          (addToCart)="onAddToCart($event)"
+          (addToWishlist)="onAddToWishlist($event)"
+          (quickView)="onQuickView($event)"
+        ></app-product-card>
+      </div>
+    </ng-container>
+
+    <ng-template #noDiscounts>
+      <div class="text-center py-24 bg-white rounded-2xl shadow-sm border border-rose/20">
+        <lucide-icon [img]="Tag" class="h-16 w-16 mx-auto text-gray-300 mb-4"></lucide-icon>
+        <h3 class="text-2xl font-serif text-charcoal mb-2">No active offers right now</h3>
+        <p class="text-gray-500 mb-8 max-w-md mx-auto">Check back later for exclusive discounts and seasonal sales on our premium collections.</p>
+        <app-button routerLink="/collections" variant="primary">Explore Collections</app-button>
+      </div>
+    </ng-template>
+
+  </section>
+</div>

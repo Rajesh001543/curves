@@ -1,0 +1,78 @@
+<div class="bg-cream min-h-screen pt-12 pb-24 animate-fade-in">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h1 class="text-3xl md:text-4xl font-serif font-bold text-charcoal mb-8">Shopping Cart</h1>
+
+    <div *ngIf="cartItems().length === 0" class="text-center py-20 bg-white rounded-2xl shadow-sm border border-gray-100">
+      <lucide-icon [img]="ShoppingBag" class="h-16 w-16 text-gray-300 mx-auto mb-4"></lucide-icon>
+      <h2 class="text-2xl font-serif font-semibold text-charcoal mb-2">Your cart is empty</h2>
+      <p class="text-gray-500 mb-8">Looks like you haven't added anything to your cart yet.</p>
+      <app-button variant="primary" routerLink="/new-arrivals">Start Shopping</app-button>
+    </div>
+
+    <div *ngIf="cartItems().length > 0" class="flex flex-col lg:flex-row gap-12">
+      <!-- Cart Items -->
+      <div class="flex-1">
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+          <ul class="divide-y divide-gray-100">
+            <li *ngFor="let item of cartItems(); let i = index" class="p-6 flex flex-col sm:flex-row gap-6">
+              <img [src]="item.product.image" [alt]="item.product.name" class="w-24 h-32 object-cover rounded-lg bg-gray-50">
+              
+              <div class="flex-1 flex flex-col justify-between">
+                <div>
+                  <div class="flex justify-between items-start mb-1">
+                    <h3 class="text-lg font-bold text-charcoal">
+                      <a [routerLink]="['/product', item.product.id]" class="hover:text-burgundy transition-colors">{{ item.product.name }}</a>
+                    </h3>
+                    <p class="font-bold text-charcoal">₹{{ (item.product.discountPrice || item.product.price) }}</p>
+                  </div>
+                  
+                  <div class="text-sm text-gray-500 mb-4 space-y-1">
+                    <p *ngIf="item.options?.size">Size: <span class="font-medium text-charcoal">{{ item.options.size }}</span></p>
+                    <p *ngIf="item.options?.color">Color: <span class="font-medium text-charcoal">{{ item.options.color }}</span></p>
+                    <p *ngIf="item.options?.fit">Fit: <span class="font-medium text-charcoal">{{ item.options.fit }}</span></p>
+                    <p *ngIf="item.options?.length">Length: <span class="font-medium text-charcoal">{{ item.options.length }}</span></p>
+                  </div>
+                </div>
+                
+                <div class="flex justify-between items-center mt-4">
+                  <div class="text-sm font-medium text-gray-600">Qty: {{ item.quantity }}</div>
+                  <button (click)="removeItem(i)" class="text-gray-400 hover:text-red-500 transition-colors flex items-center text-sm">
+                    <lucide-icon [img]="Trash2" class="h-4 w-4 mr-1"></lucide-icon> Remove
+                  </button>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Order Summary -->
+      <div class="lg:w-96 flex-shrink-0">
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sticky top-24">
+          <h2 class="text-xl font-serif font-bold text-charcoal mb-6">Order Summary</h2>
+          
+          <div class="space-y-4 mb-6 text-sm">
+            <div class="flex justify-between text-gray-600">
+              <span>Subtotal</span>
+              <span class="font-medium text-charcoal">₹{{ subtotal() }}</span>
+            </div>
+            <div class="flex justify-between text-gray-600">
+              <span>Delivery</span>
+              <span class="font-medium text-charcoal">₹{{ deliveryCharge }}</span>
+            </div>
+            <div class="border-t border-gray-100 pt-4 flex justify-between">
+              <span class="text-base font-bold text-charcoal">Total</span>
+              <span class="text-xl font-bold text-burgundy">₹{{ total() }}</span>
+            </div>
+          </div>
+
+          <app-button variant="primary" [fullWidth]="true" routerLink="/checkout" class="mb-4">
+            Proceed to Checkout
+          </app-button>
+          
+          <p class="text-xs text-center text-gray-500">Secure checkout powered by Stripe. Free returns within 30 days.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

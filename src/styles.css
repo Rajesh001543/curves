@@ -1,0 +1,67 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --color-blush: #f9e8e8;
+  --color-rose: #e5b2b2;
+  --color-cream: #fdfbf7;
+  --color-champagne: #f7e7ce;
+  --color-burgundy: #800020;
+  --color-charcoal: #333333;
+  
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Playfair Display', ui-serif, Georgia, serif;
+
+  --animate-fade-in: fadeIn 1s ease-out;
+  --animate-slide-up: slideUp 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes slideUp {
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background-color: var(--color-cream);
+  color: var(--color-charcoal);
+  font-family: var(--font-sans);
+}
+
+/* Custom Premium Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: var(--color-cream);
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(229, 178, 178, 0.1); /* light rose */
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-rose);
+  border-radius: 5px;
+  border: 2px solid var(--color-cream);
+  transition: background-color 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-burgundy);
+}
+
+/* Fix for lucide icons fill */
+lucide-icon.fill-current svg {
+  fill: currentColor;
+}

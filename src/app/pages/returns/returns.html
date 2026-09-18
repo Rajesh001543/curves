@@ -1,0 +1,166 @@
+<div class="min-h-screen bg-cream font-sans py-16 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-4xl mx-auto">
+    
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <h1 class="text-4xl md:text-5xl font-serif text-charcoal mb-4">Returns & Exchanges</h1>
+      <p class="text-gray-500 max-w-2xl mx-auto text-lg">
+        Not quite right? No problem. We want you to love everything you purchase from us, so we make returns as simple as possible.
+      </p>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mb-16">
+      
+      <!-- Left Column: Initiate Return Form -->
+      <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
+        <h2 class="text-2xl font-serif text-charcoal mb-6">Initiate a Return</h2>
+        
+        <!-- Idle State (Form) -->
+        <form *ngIf="lookupStatus === 'idle' || lookupStatus === 'loading' || lookupStatus === 'error'" (submit)="onLookupOrder($event)" class="space-y-6">
+          <p class="text-sm text-gray-500 mb-6">
+            Enter your order details below to start the return or exchange process. Your order number can be found in your confirmation email.
+          </p>
+
+          <div *ngIf="lookupStatus === 'error'" class="bg-red-50 text-red-600 p-4 rounded-lg text-sm flex items-start gap-3 border border-red-100 mb-6">
+            <lucide-icon [img]="AlertCircle" class="h-5 w-5 flex-shrink-0 mt-0.5"></lucide-icon>
+            <p>We couldn't find an order with those details. Please check your order number and email address and try again. (Hint: Try an order number starting with 'ORD')</p>
+          </div>
+          
+          <div>
+            <label for="orderNumber" class="block text-sm font-medium text-gray-700 mb-2">Order Number</label>
+            <input 
+              type="text" 
+              id="orderNumber" 
+              name="orderNumber"
+              [(ngModel)]="orderNumber"
+              required
+              placeholder="e.g. ORD-123456"
+              class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-burgundy focus:ring-1 focus:ring-burgundy transition-colors bg-gray-50 focus:bg-white"
+            >
+          </div>
+          
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+            <input 
+              type="email" 
+              id="email" 
+              name="email"
+              [(ngModel)]="email"
+              required
+              placeholder="The email used for the order"
+              class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-burgundy focus:ring-1 focus:ring-burgundy transition-colors bg-gray-50 focus:bg-white"
+            >
+          </div>
+          
+          <app-button 
+            type="submit" 
+            variant="primary" 
+            class="w-full justify-center"
+            [disabled]="lookupStatus === 'loading'"
+          >
+            <span class="flex items-center gap-2">
+              <ng-container *ngIf="lookupStatus === 'loading'">
+                <div class="h-4 w-4 rounded-full border-2 border-white border-t-transparent animate-spin"></div>
+                Looking up order...
+              </ng-container>
+              <ng-container *ngIf="lookupStatus !== 'loading'">
+                <lucide-icon [img]="Search" class="h-4 w-4"></lucide-icon>
+                Find My Order
+              </ng-container>
+            </span>
+          </app-button>
+        </form>
+
+        <!-- Success State -->
+        <div *ngIf="lookupStatus === 'success'" class="text-center py-8">
+          <div class="w-16 h-16 bg-green-50 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+            <lucide-icon [img]="CheckCircle2" class="h-8 w-8"></lucide-icon>
+          </div>
+          <h3 class="text-xl font-serif text-charcoal mb-2">Order Found!</h3>
+          <p class="text-gray-500 text-sm mb-8">
+            Order <strong>{{ orderNumber }}</strong> is eligible for a return. We've sent a secure link to <strong>{{ email }}</strong> to complete your return request.
+          </p>
+          <app-button variant="outline" (click)="resetLookup()">Start Another Return</app-button>
+        </div>
+
+      </div>
+
+      <!-- Right Column: How it Works & Policy -->
+      <div class="space-y-8">
+        
+        <!-- How it works -->
+        <div>
+          <h3 class="text-sm font-bold tracking-widest text-gray-400 uppercase mb-6">How it works</h3>
+          <div class="space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 bg-blush text-burgundy rounded-full flex items-center justify-center flex-shrink-0">
+                <lucide-icon [img]="Search" class="h-5 w-5"></lucide-icon>
+              </div>
+              <div>
+                <h4 class="font-bold text-gray-800 text-sm mb-1">1. Initiate</h4>
+                <p class="text-xs text-gray-500 leading-relaxed">Enter your order details to start. Select the items you want to return and tell us why.</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 bg-blush text-burgundy rounded-full flex items-center justify-center flex-shrink-0">
+                <lucide-icon [img]="Printer" class="h-5 w-5"></lucide-icon>
+              </div>
+              <div>
+                <h4 class="font-bold text-gray-800 text-sm mb-1">2. Print Label</h4>
+                <p class="text-xs text-gray-500 leading-relaxed">Instantly receive a prepaid return shipping label via email. Print it out and attach it to your package.</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 bg-blush text-burgundy rounded-full flex items-center justify-center flex-shrink-0">
+                <lucide-icon [img]="Package" class="h-5 w-5"></lucide-icon>
+              </div>
+              <div>
+                <h4 class="font-bold text-gray-800 text-sm mb-1">3. Pack & Ship</h4>
+                <p class="text-xs text-gray-500 leading-relaxed">Securely pack your items in their original packaging and drop the box off at any authorized carrier location.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 bg-blush text-burgundy rounded-full flex items-center justify-center flex-shrink-0">
+                <lucide-icon [img]="CreditCard" class="h-5 w-5"></lucide-icon>
+              </div>
+              <div>
+                <h4 class="font-bold text-gray-800 text-sm mb-1">4. Refund</h4>
+                <p class="text-xs text-gray-500 leading-relaxed">Once we receive and inspect your items, your refund will be processed within 3-5 business days.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Policy Section -->
+    <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
+      <h3 class="text-xl font-serif text-charcoal mb-6">Return Policy Highlights</h3>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
+        <div>
+          <h4 class="font-bold text-gray-800 text-sm mb-2">30-Day Window</h4>
+          <p class="text-sm text-gray-500">We accept returns on all unworn, unwashed items with tags still attached within 30 days of the original delivery date.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-gray-800 text-sm mb-2">Free Store Credit Returns</h4>
+          <p class="text-sm text-gray-500">Returns for store credit or exchanges are completely free. Refunds to the original payment method will incur a ₹150 restocking fee.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-gray-800 text-sm mb-2">Final Sale Items</h4>
+          <p class="text-sm text-gray-500">Items marked as "Final Sale" cannot be returned or exchanged. Intimates, swimwear, and pierced jewelry are also non-returnable for hygiene reasons.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-gray-800 text-sm mb-2">International Returns</h4>
+          <p class="text-sm text-gray-500">Currently, we do not offer prepaid return labels for international orders. International customers are responsible for return shipping costs.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

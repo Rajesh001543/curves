@@ -1,0 +1,18 @@
+.icon-fly {
+  animation: flyOut 0.8s cubic-bezier(0.5, 0, 0.2, 1) forwards;
+}
+
+@keyframes flyOut {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  20% {
+    transform: translate(-5px, 5px) scale(0.9);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(60px, -60px) scale(0);
+    opacity: 0;
+  }
+}

@@ -1,0 +1,85 @@
+<nav
+  class="fixed w-full z-50 transition-all duration-300 border-b border-transparent"
+  [ngClass]="{
+    'bg-white/80 backdrop-blur-md shadow-sm border-gray-100': isScrolled || isMobileMenuOpen,
+    'bg-transparent': !isScrolled && !isMobileMenuOpen
+  }"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-20">
+      
+      <!-- Mobile menu button -->
+      <div class="flex items-center lg:hidden">
+        <button
+          (click)="toggleMobileMenu()"
+          class="inline-flex items-center justify-center p-2 rounded-md text-charcoal hover:bg-gray-100 focus:outline-none transition-colors"
+        >
+          <lucide-icon [img]="isMobileMenuOpen ? X : Menu" class="h-6 w-6"></lucide-icon>
+        </button>
+      </div>
+
+      <!-- Logo -->
+      <div class="flex-shrink-0 flex items-center justify-center lg:justify-start flex-1 lg:flex-none">
+        <a routerLink="/" class="flex items-center">
+          <img src="/logoimage/Logoimage.PNG" alt="Made For You Logo" class="h-16 w-56 object-cover object-center mix-blend-multiply" />
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden lg:flex sm:space-x-8 items-center h-full">
+        <a
+          *ngFor="let link of navLinks"
+          [routerLink]="link.path"
+          routerLinkActive="text-burgundy font-semibold after:scale-x-100"
+          [routerLinkActiveOptions]="{exact: link.path === '/'}"
+          class="relative text-sm font-medium text-gray-800 hover:text-burgundy transition-colors duration-200 py-2 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-burgundy after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left"
+        >
+          {{ link.label }}
+        </a>
+      </div>
+
+      <!-- Right side icons -->
+      <div class="flex items-center space-x-4 lg:space-x-6">
+        <button class="text-gray-800 hover:text-burgundy transition-colors duration-200 group">
+          <lucide-icon [img]="Search" class="h-5 w-5 group-hover:scale-110 transition-transform"></lucide-icon>
+        </button>
+        <button class="text-gray-800 hover:text-burgundy transition-colors duration-200 group hidden sm:block">
+          <lucide-icon [img]="User" class="h-5 w-5 group-hover:scale-110 transition-transform"></lucide-icon>
+        </button>
+        <button routerLink="/wishlist" class="text-gray-800 hover:text-burgundy transition-colors duration-200 group relative">
+          <lucide-icon [img]="Heart" class="h-5 w-5 group-hover:scale-110 transition-transform"></lucide-icon>
+          <span *ngIf="wishlist().length > 0" class="absolute -top-1 -right-1 bg-burgundy text-white text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center">{{ wishlist().length }}</span>
+        </button>
+        <button routerLink="/cart" class="text-gray-800 hover:text-burgundy transition-colors duration-200 group relative">
+          <lucide-icon [img]="ShoppingBag" class="h-5 w-5 group-hover:scale-110 transition-transform"></lucide-icon>
+          <span *ngIf="cart().length > 0" class="absolute -top-1 -right-1 bg-burgundy text-white text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center">{{ cart().length }}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu dropdown -->
+  <div
+    class="lg:hidden overflow-hidden transition-all duration-300 ease-in-out bg-white border-t border-gray-100"
+    [ngClass]="isMobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'"
+  >
+    <div class="px-4 pt-2 pb-6 space-y-1">
+      <a
+        *ngFor="let link of navLinks"
+        [routerLink]="link.path"
+        routerLinkActive="bg-blush/30 text-burgundy border-l-4 border-burgundy"
+        [routerLinkActiveOptions]="{exact: link.path === '/'}"
+        (click)="isMobileMenuOpen = false"
+        class="block px-3 py-3 text-base font-medium text-gray-800 hover:bg-gray-50 hover:text-burgundy transition-colors border-l-4 border-transparent"
+      >
+        {{ link.label }}
+      </a>
+      <div class="border-t border-gray-100 pt-4 mt-4 flex items-center px-3 space-x-4">
+        <button class="flex items-center text-gray-800">
+          <lucide-icon [img]="User" class="h-5 w-5 mr-2"></lucide-icon>
+          Sign In
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>

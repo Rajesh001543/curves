@@ -1,0 +1,94 @@
+<div class="bg-cream min-h-screen pb-16 relative overflow-hidden">
+  
+  <!-- Decorative Background Elements -->
+  <div class="absolute top-0 right-0 -mr-20 -mt-20 w-[400px] h-[400px] rounded-full bg-rose/10 blur-[80px] z-0 pointer-events-none"></div>
+  <div class="absolute top-[15%] left-0 -ml-20 w-[300px] h-[300px] rounded-full bg-blush/15 blur-[60px] z-0 pointer-events-none"></div>
+
+  <!-- Page Header -->
+  <div class="relative z-10 pt-12 pb-8 md:pt-16 md:pb-10 mb-4 overflow-hidden border-b border-gray-200/50">
+    <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between">
+      <div class="text-left">
+        <h1 class="text-3xl md:text-4xl font-serif font-bold text-charcoal mb-2 animate-slide-up">The Collection</h1>
+        <p class="text-sm md:text-base text-gray-600 max-w-xl animate-slide-up" style="animation-delay: 0.1s;">Discover elegantly designed pieces curated for your distinctive style.</p>
+      </div>
+      
+      <!-- Desktop Sort (Moved to header for compactness) -->
+      <div class="hidden lg:flex items-center gap-3 animate-fade-in" style="animation-delay: 0.2s;">
+        <span class="text-xs text-gray-500 uppercase tracking-widest">Sort:</span>
+        <button class="flex items-center gap-1 text-sm font-semibold text-charcoal hover:text-burgundy transition-colors bg-white px-3 py-1.5 rounded-md shadow-sm border border-gray-100">
+          Featured <lucide-icon [img]="ChevronDown" class="h-3 w-3"></lucide-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <!-- Mobile Filter Toggle -->
+    <div class="lg:hidden flex justify-between items-center mb-4 animate-fade-in">
+      <button 
+        (click)="toggleMobileFilters()"
+        class="flex items-center gap-2 px-3 py-1.5 bg-white rounded-md shadow-sm text-charcoal text-sm font-medium hover:text-burgundy transition-colors border border-gray-100"
+      >
+        <lucide-icon [img]="SlidersHorizontal" class="h-4 w-4"></lucide-icon>
+        Filters
+      </button>
+      <span class="text-xs font-medium text-gray-500">{{ filteredProducts().length }} Items</span>
+    </div>
+
+    <div class="flex flex-col lg:flex-row gap-6">
+      
+      <!-- Sidebar / Filters -->
+      <aside 
+        class="lg:w-48 flex-shrink-0 transition-all duration-300 animate-slide-up" style="animation-delay: 0.1s;"
+        [ngClass]="{'hidden lg:block': !isMobileFiltersOpen, 'block': isMobileFiltersOpen}"
+      >
+        <div class="sticky top-24">
+          <div class="flex items-center gap-2 mb-4 pb-2 border-b border-gray-200">
+            <lucide-icon [img]="Filter" class="h-4 w-4 text-burgundy"></lucide-icon>
+            <h2 class="text-base font-serif font-bold text-charcoal">Categories</h2>
+          </div>
+
+          <!-- Category Filter -->
+          <ul class="space-y-1.5">
+            <li *ngFor="let cat of categories" class="group">
+              <button 
+                (click)="setCategory(cat)"
+                class="flex items-center text-sm w-full py-1.5 px-2 rounded-md transition-all duration-200"
+                [ngClass]="selectedCategory() === cat ? 'bg-burgundy/5 text-burgundy font-semibold' : 'text-gray-600 hover:bg-white/60 hover:text-burgundy'"
+              >
+                {{ cat }}
+              </button>
+            </li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- Product Grid -->
+      <div class="flex-1">
+        
+        <!-- Results Count -->
+        <div class="hidden lg:block mb-4 animate-fade-in text-xs text-gray-500 font-medium">
+          Showing {{ filteredProducts().length }} results
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 gap-3 md:gap-4">
+          <app-product-card 
+            *ngFor="let product of filteredProducts(); let i = index" 
+            [product]="product"
+            (addToCart)="onAddToCart($event)"
+            (addToWishlist)="onAddToWishlist($event)"
+            class="animate-slide-up"
+            [style.animation-delay]="0.05 * (i % 10) + 's'"
+          ></app-product-card>
+        </div>
+        
+        <div *ngIf="filteredProducts().length === 0" class="text-center py-16 bg-white/60 backdrop-blur-sm rounded-xl border border-white shadow-sm mt-4 animate-fade-in">
+          <p class="text-gray-500 text-sm mb-4">No products found for this category.</p>
+          <app-button variant="primary" size="sm" (onClick)="setCategory('All')">Clear Filters</app-button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

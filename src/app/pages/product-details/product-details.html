@@ -1,0 +1,169 @@
+<div class="bg-white min-h-screen pt-10 pb-20 animate-fade-in" *ngIf="product(); let p">
+  
+  <!-- Breadcrumbs -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+    <nav class="flex text-sm text-gray-500">
+      <a routerLink="/" class="hover:text-burgundy transition-colors">Home</a>
+      <lucide-icon [img]="ChevronRight" class="h-4 w-4 mx-2"></lucide-icon>
+      <a routerLink="/category/{{p.category | lowercase}}" class="hover:text-burgundy transition-colors">{{ p.category }}</a>
+      <lucide-icon [img]="ChevronRight" class="h-4 w-4 mx-2"></lucide-icon>
+      <span class="text-charcoal">{{ p.name }}</span>
+    </nav>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col lg:flex-row gap-12 lg:gap-16">
+      
+      <!-- Image Gallery -->
+      <div class="lg:w-1/2 flex gap-4">
+        <div class="w-20 hidden md:flex flex-col gap-4">
+          <img [src]="p.image" class="w-full aspect-[3/4] object-cover rounded-lg border-2 border-burgundy cursor-pointer opacity-100" />
+          <img [src]="p.image" class="w-full aspect-[3/4] object-cover rounded-lg border-2 border-transparent cursor-pointer opacity-60 hover:opacity-100 transition-opacity" />
+          <img [src]="p.image" class="w-full aspect-[3/4] object-cover rounded-lg border-2 border-transparent cursor-pointer opacity-60 hover:opacity-100 transition-opacity" />
+        </div>
+        <div class="flex-1 relative aspect-[3/4] rounded-2xl overflow-hidden bg-gray-50">
+          <img [src]="p.image" class="w-full h-full object-cover" />
+          <button 
+            (click)="toggleWishlist()"
+            class="absolute top-4 right-4 h-10 w-10 bg-white/80 backdrop-blur-md rounded-full flex items-center justify-center text-gray-400 hover:text-burgundy transition-colors shadow-sm"
+            [class.text-burgundy]="isWishlisted()"
+          >
+            <lucide-icon [img]="Heart" class="h-5 w-5 transition-transform" [class.fill-current]="isWishlisted()"></lucide-icon>
+          </button>
+        </div>
+      </div>
+
+      <!-- Product Info & Customization -->
+      <div class="lg:w-1/2 flex flex-col">
+        <div class="mb-6">
+          <h1 class="text-3xl md:text-4xl font-serif font-bold text-charcoal mb-2">{{ p.name }}</h1>
+          <div class="flex justify-between items-end">
+            <div class="flex items-center gap-4">
+              <span class="text-2xl font-bold" [class.text-burgundy]="p.discountPrice" [class.text-charcoal]="!p.discountPrice">
+                ₹{{ p.discountPrice || p.price }}
+              </span>
+              <span *ngIf="p.discountPrice" class="text-lg text-gray-400 line-through">
+                ₹{{ p.price }}
+              </span>
+            </div>
+            <div class="flex items-center text-yellow-400">
+              <lucide-icon [img]="Star" class="h-4 w-4 fill-current"></lucide-icon>
+              <span class="text-charcoal ml-1 text-sm font-medium">{{ p.rating }} (124 Reviews)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="prose prose-sm text-gray-600 mb-10">
+          <p>This elegant piece is tailored to perfection. Breathable, comfortable, and exclusively designed to make you feel uniquely yourself. Customize your fit below.</p>
+        </div>
+
+        <div class="bg-rose/5 border border-rose/20 rounded-2xl p-6 mb-8 relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-blush/40 rounded-full blur-3xl -mr-10 -mt-10"></div>
+          
+          <h2 class="text-xl font-serif font-bold text-charcoal mb-6 flex items-center relative z-10">
+            Make It <span class="italic text-burgundy ml-2">Made For You</span>
+          </h2>
+
+          <!-- Size -->
+          <div class="mb-6 relative z-10">
+            <div class="flex justify-between mb-2">
+              <span class="text-sm font-semibold text-charcoal uppercase tracking-wide">Choose Your Size</span>
+              <a href="#" class="text-xs text-burgundy underline hover:text-charcoal transition-colors">Size Guide</a>
+            </div>
+            <div class="flex flex-wrap gap-3">
+              <button
+                *ngFor="let size of sizes"
+                (click)="setSize(size)"
+                class="w-12 h-12 rounded-lg border-2 font-medium flex items-center justify-center transition-all duration-200"
+                [ngClass]="selectedSize() === size ? 'border-burgundy bg-burgundy text-white' : 'border-gray-200 text-charcoal hover:border-gray-300'"
+              >
+                {{ size }}
+              </button>
+            </div>
+          </div>
+
+          <!-- Color -->
+          <div class="mb-6 relative z-10">
+            <span class="text-sm font-semibold text-charcoal uppercase tracking-wide mb-3 block">Choose Your Color</span>
+            <div class="flex gap-4">
+              <button
+                *ngFor="let color of colors"
+                (click)="setColor(color.name)"
+                class="relative w-10 h-10 rounded-full border-2 transition-all duration-200"
+                [ngClass]="selectedColor() === color.name ? 'border-charcoal scale-110 shadow-md' : 'border-transparent hover:scale-105'"
+                [class]="color.class"
+                [title]="color.name"
+              >
+                <div *ngIf="selectedColor() === color.name" class="absolute inset-0 flex items-center justify-center">
+                  <lucide-icon [img]="Check" class="h-4 w-4" [class.text-white]="color.name === 'Burgundy' || color.name === 'Charcoal'" [class.text-charcoal]="color.name === 'Blush' || color.name === 'Cream'"></lucide-icon>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-6 relative z-10">
+            <!-- Fit -->
+            <div>
+              <span class="text-sm font-semibold text-charcoal uppercase tracking-wide mb-3 block">Choose Your Fit</span>
+              <div class="space-y-2">
+                <button
+                  *ngFor="let fit of fits"
+                  (click)="setFit(fit)"
+                  class="w-full text-left px-4 py-3 rounded-lg border-2 text-sm transition-all duration-200 flex justify-between items-center"
+                  [ngClass]="selectedFit() === fit ? 'border-burgundy bg-white font-medium text-burgundy shadow-sm' : 'border-gray-200 bg-white/50 text-gray-600 hover:border-gray-300'"
+                >
+                  {{ fit }}
+                  <span *ngIf="fit !== 'Regular'" class="text-xs font-normal text-gray-400">+ ₹1500</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Length -->
+            <div>
+              <span class="text-sm font-semibold text-charcoal uppercase tracking-wide mb-3 block">Choose Your Length</span>
+              <div class="space-y-2">
+                <button
+                  *ngFor="let length of lengths"
+                  (click)="setLength(length)"
+                  class="w-full text-left px-4 py-3 rounded-lg border-2 text-sm transition-all duration-200 flex justify-between items-center"
+                  [ngClass]="selectedLength() === length ? 'border-burgundy bg-white font-medium text-burgundy shadow-sm' : 'border-gray-200 bg-white/50 text-gray-600 hover:border-gray-300'"
+                >
+                  {{ length }}
+                  <span *ngIf="length === 'Maxi'" class="text-xs font-normal text-gray-400">+ ₹2000</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-auto">
+          <div class="flex items-center gap-6 mb-6">
+            <div class="flex items-center border-2 border-gray-200 rounded-lg h-12 w-32">
+              <button (click)="decreaseQuantity()" class="w-10 h-full flex items-center justify-center text-gray-500 hover:text-charcoal hover:bg-gray-50 transition-colors rounded-l-md">-</button>
+              <span class="flex-1 text-center font-medium text-charcoal">{{ quantity() }}</span>
+              <button (click)="increaseQuantity()" class="w-10 h-full flex items-center justify-center text-gray-500 hover:text-charcoal hover:bg-gray-50 transition-colors rounded-r-md">+</button>
+            </div>
+            
+            <div class="flex-1 text-right">
+              <p class="text-sm text-gray-500 mb-1">Total Price</p>
+              <p class="text-3xl font-bold text-charcoal">₹{{ totalPrice() }}</p>
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-4">
+            <app-button variant="primary" size="lg" class="flex-1" (onClick)="addToCart()">
+              Add to Cart
+            </app-button>
+            <app-button variant="outline" size="lg" class="flex-1 bg-white" (onClick)="buyNow()">
+              Buy Now
+            </app-button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="!product()" class="min-h-screen flex items-center justify-center bg-cream">
+  <p class="text-xl text-gray-500 animate-pulse">Loading product...</p>
+</div>

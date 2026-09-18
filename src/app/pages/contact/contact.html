@@ -1,0 +1,133 @@
+<div class="bg-cream min-h-screen relative overflow-hidden flex flex-col">
+  <!-- Top spacing for fixed navbar -->
+  <div class="h-20 w-full bg-cream"></div>
+
+  <!-- Main Content Area -->
+  <div class="flex-1 w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col items-center">
+    
+    <div class="text-center max-w-2xl mx-auto mb-12 animate-fade-in-up" style="animation-delay: 0.1s; animation-fill-mode: both;">
+      <h1 class="text-5xl md:text-6xl font-serif font-bold text-charcoal mb-4 tracking-tight">Let's Connect</h1>
+      <div class="h-1 w-24 bg-burgundy mx-auto mb-6"></div>
+      <p class="text-gray-600 text-lg">Whether you have a question about a piece, styling advice, or just want to say hello, our team is here for you.</p>
+    </div>
+
+    <!-- Contact Wrapper -->
+    <div class="w-full max-w-6xl bg-white rounded-3xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.05)] overflow-hidden flex flex-col lg:flex-row border border-gray-100/50 animate-slide-up" style="animation-delay: 0.3s; animation-fill-mode: both;">
+      
+      <!-- Left Side: Info (Dark Theme) -->
+      <div class="lg:w-2/5 bg-charcoal text-cream p-12 lg:p-16 relative overflow-hidden flex flex-col justify-between">
+        <!-- Decorative bg pattern -->
+        <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none animate-pulse">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M0 40L40 0H20L0 20M40 40V20L20 40" fill="none" stroke="currentColor" stroke-width="1" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid)" />
+          </svg>
+        </div>
+        
+        <div class="relative z-10">
+          <h2 class="text-3xl font-serif font-bold mb-8 animate-fade-in-right" style="animation-delay: 0.5s; animation-fill-mode: both;">Contact Information</h2>
+          
+          <div class="space-y-10">
+            <div class="group flex items-start animate-fade-in-right" style="animation-delay: 0.6s; animation-fill-mode: both;">
+              <div class="flex-shrink-0 mt-1 bg-white/10 p-3 rounded-full group-hover:bg-burgundy transition-colors duration-300">
+                <lucide-icon [img]="Mail" class="h-6 w-6 text-cream"></lucide-icon>
+              </div>
+              <div class="ml-5">
+                <p class="text-sm font-medium text-gray-400 uppercase tracking-widest mb-1">Email</p>
+                <a href="mailto:support@madeforyou.com" class="text-lg font-medium hover:text-burgundy transition-colors">support&#64;madeforyou.com</a>
+              </div>
+            </div>
+            
+            <div class="group flex items-start animate-fade-in-right" style="animation-delay: 0.7s; animation-fill-mode: both;">
+              <div class="flex-shrink-0 mt-1 bg-white/10 p-3 rounded-full group-hover:bg-burgundy transition-colors duration-300">
+                <lucide-icon [img]="Phone" class="h-6 w-6 text-cream"></lucide-icon>
+              </div>
+              <div class="ml-5">
+                <p class="text-sm font-medium text-gray-400 uppercase tracking-widest mb-1">Phone</p>
+                <p class="text-lg font-medium">+1 (555) 123-4567</p>
+              </div>
+            </div>
+            
+            <div class="group flex items-start animate-fade-in-right" style="animation-delay: 0.8s; animation-fill-mode: both;">
+              <div class="flex-shrink-0 mt-1 bg-white/10 p-3 rounded-full group-hover:bg-burgundy transition-colors duration-300">
+                <lucide-icon [img]="MapPin" class="h-6 w-6 text-cream"></lucide-icon>
+              </div>
+              <div class="ml-5">
+                <p class="text-sm font-medium text-gray-400 uppercase tracking-widest mb-1">Boutique</p>
+                <p class="text-lg font-medium leading-relaxed">22/7, Singai Nagar, Singanallur<br>Coimbatore - 641005</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative z-10 mt-16 pt-8 border-t border-white/20 animate-fade-in-right" style="animation-delay: 0.9s; animation-fill-mode: both;">
+          <p class="text-sm text-gray-400 mb-4 uppercase tracking-widest">Follow our journey</p>
+          <div class="flex space-x-4">
+            <a href="#" class="h-10 w-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-charcoal transition-all duration-300">
+              <span class="font-serif font-bold text-lg">Ig</span>
+            </a>
+            <a href="#" class="h-10 w-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-charcoal transition-all duration-300">
+              <span class="font-serif font-bold text-lg">Pt</span>
+            </a>
+            <a href="#" class="h-10 w-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-charcoal transition-all duration-300">
+              <span class="font-serif font-bold text-lg">Tw</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Side: Form -->
+      <div class="lg:w-3/5 p-12 lg:p-16 relative">
+        <form class="space-y-8 h-full flex flex-col justify-center">
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="relative group animate-fade-in-left" style="animation-delay: 0.5s; animation-fill-mode: both;">
+              <input type="text" id="name" name="name" [(ngModel)]="formData.name" required class="peer w-full px-0 py-4 bg-transparent border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-burgundy outline-none transition-colors text-charcoal text-lg placeholder-transparent" placeholder="Name">
+              <label for="name" class="absolute left-0 top-0 text-gray-500 text-sm transition-all peer-placeholder-shown:text-lg peer-placeholder-shown:top-4 peer-focus:top-0 peer-focus:text-sm peer-focus:text-burgundy uppercase tracking-widest font-medium pointer-events-none">Full Name</label>
+            </div>
+            
+            <div class="relative group animate-fade-in-left" style="animation-delay: 0.6s; animation-fill-mode: both;">
+              <input type="tel" id="phone" name="phone" [(ngModel)]="formData.phone" required class="peer w-full px-0 py-4 bg-transparent border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-burgundy outline-none transition-colors text-charcoal text-lg placeholder-transparent" placeholder="Phone">
+              <label for="phone" class="absolute left-0 top-0 text-gray-500 text-sm transition-all peer-placeholder-shown:text-lg peer-placeholder-shown:top-4 peer-focus:top-0 peer-focus:text-sm peer-focus:text-burgundy uppercase tracking-widest font-medium pointer-events-none">Phone Number</label>
+            </div>
+          </div>
+
+          <div class="relative group animate-fade-in-left" style="animation-delay: 0.7s; animation-fill-mode: both;">
+            <input type="email" id="email" name="email" [(ngModel)]="formData.email" required class="peer w-full px-0 py-4 bg-transparent border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-burgundy outline-none transition-colors text-charcoal text-lg placeholder-transparent" placeholder="Email">
+            <label for="email" class="absolute left-0 top-0 text-gray-500 text-sm transition-all peer-placeholder-shown:text-lg peer-placeholder-shown:top-4 peer-focus:top-0 peer-focus:text-sm peer-focus:text-burgundy uppercase tracking-widest font-medium pointer-events-none">Email Address</label>
+          </div>
+
+          <div class="relative group animate-fade-in-left" style="animation-delay: 0.8s; animation-fill-mode: both;">
+            <input type="text" id="subject" name="subject" [(ngModel)]="formData.subject" class="peer w-full px-0 py-4 bg-transparent border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-burgundy outline-none transition-colors text-charcoal text-lg placeholder-transparent" placeholder="Subject">
+            <label for="subject" class="absolute left-0 top-0 text-gray-500 text-sm transition-all peer-placeholder-shown:text-lg peer-placeholder-shown:top-4 peer-focus:top-0 peer-focus:text-sm peer-focus:text-burgundy uppercase tracking-widest font-medium pointer-events-none">Subject (Optional)</label>
+          </div>
+
+          <div class="relative group animate-fade-in-left" style="animation-delay: 0.9s; animation-fill-mode: both;">
+            <textarea id="enquiry" name="enquiry" [(ngModel)]="formData.enquiry" rows="3" required class="peer w-full px-0 py-4 bg-transparent border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-burgundy outline-none transition-colors text-charcoal text-lg placeholder-transparent resize-none" placeholder="Message"></textarea>
+            <label for="enquiry" class="absolute left-0 top-0 text-gray-500 text-sm transition-all peer-placeholder-shown:text-lg peer-placeholder-shown:top-4 peer-focus:top-0 peer-focus:text-sm peer-focus:text-burgundy uppercase tracking-widest font-medium pointer-events-none">Your Message</label>
+          </div>
+
+          <div class="pt-6 animate-fade-in-left" style="animation-delay: 1.0s; animation-fill-mode: both;">
+            <button type="button" (click)="onSubmit()" [disabled]="isSubmitting" class="group relative bg-charcoal text-white font-serif font-bold text-lg py-4 px-10 rounded-full transition-all duration-300 hover:shadow-xl hover:shadow-charcoal/20 flex items-center justify-center gap-3">
+              <span class="relative z-10">Send Message</span>
+              <span class="relative z-10 flex items-center justify-center" [ngClass]="isSubmitting ? 'icon-fly' : 'group-hover:translate-x-1 transition-transform duration-300'">
+                <lucide-icon [img]="Send" class="h-5 w-5"></lucide-icon>
+              </span>
+              <div class="absolute inset-0 h-full w-full bg-burgundy rounded-full scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 ease-out z-0"></div>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="fixed top-28 right-8 z-50 flex items-center gap-3 bg-white px-6 py-4 rounded-xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2)] border border-gray-100 transition-all duration-500 transform" [ngClass]="showToast ? 'translate-x-0 opacity-100' : 'translate-x-32 opacity-0 pointer-events-none'">
+    <lucide-icon [img]="CheckCircle" class="h-6 w-6 text-green-500"></lucide-icon>
+    <span class="font-medium text-charcoal">Message sent successfully!</span>
+  </div>
+</div>

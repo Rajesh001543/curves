@@ -1,0 +1,44 @@
+<div class="bg-cream min-h-screen pt-24 pb-24 animate-fade-in relative overflow-hidden">
+  <!-- Decorative Background Elements -->
+  <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-rose/10 blur-3xl z-0 pointer-events-none"></div>
+  <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-blush/20 blur-3xl z-0 pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="flex flex-col items-center justify-center text-center mb-12">
+      <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-rose/10 mb-4 animate-slide-up">
+        <lucide-icon [img]="Heart" class="h-8 w-8 text-burgundy fill-current"></lucide-icon>
+      </div>
+      <h1 class="text-4xl md:text-5xl font-serif font-bold text-charcoal mb-4 animate-slide-up" style="animation-delay: 0.1s;">Your Wishlist</h1>
+      <div class="w-16 h-1 bg-burgundy mx-auto animate-slide-up" style="animation-delay: 0.2s;"></div>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="wishlistItems().length === 0" class="max-w-3xl mx-auto text-center py-24 bg-white/80 backdrop-blur-sm rounded-3xl shadow-sm border border-white/50 animate-slide-up" style="animation-delay: 0.3s;">
+      <div class="relative w-24 h-24 mx-auto mb-6">
+        <div class="absolute inset-0 bg-rose/20 rounded-full animate-ping opacity-75" style="animation-duration: 3s;"></div>
+        <div class="relative flex items-center justify-center w-full h-full bg-white rounded-full shadow-md">
+          <lucide-icon [img]="Heart" class="h-10 w-10 text-gray-300"></lucide-icon>
+        </div>
+      </div>
+      
+      <h2 class="text-3xl font-serif font-semibold text-charcoal mb-4">Nothing to see here yet</h2>
+      <p class="text-lg text-gray-500 mb-10 max-w-md mx-auto">Save items you love to your wishlist so you can easily find them later when you're ready to make them yours.</p>
+      
+      <app-button variant="primary" size="lg" routerLink="/new-arrivals" class="transform hover:scale-105 transition-transform duration-300">
+        Discover New Arrivals
+      </app-button>
+    </div>
+
+    <!-- Populated State -->
+    <div *ngIf="wishlistItems().length > 0" class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 animate-slide-up" style="animation-delay: 0.3s;">
+      <app-product-card 
+        *ngFor="let product of wishlistItems(); let i = index" 
+        [product]="product"
+        (addToCart)="onAddToCart($event)"
+        (addToWishlist)="onAddToWishlist($event)"
+        class="animate-slide-up"
+        [style.animation-delay]="0.1 * (i + 4) + 's'"
+      ></app-product-card>
+    </div>
+  </div>
+</div>

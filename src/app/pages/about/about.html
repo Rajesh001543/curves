@@ -1,0 +1,103 @@
+<div class="min-h-screen bg-cream font-sans overflow-x-hidden">
+
+  <!-- Hero Section -->
+  <section class="relative h-[70vh] min-h-[600px] w-full bg-charcoal flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src="assets/about_hero.jpg" alt="About Us Hero" class="w-full h-full object-cover opacity-60">
+      <div class="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/40 to-transparent"></div>
+    </div>
+    
+    <div class="relative z-10 text-center px-4 max-w-4xl mx-auto animate-fade-in-up">
+      <span class="text-burgundy uppercase tracking-[0.3em] font-semibold text-sm mb-4 block">Our Story</span>
+      <h1 class="text-5xl md:text-7xl font-serif text-white mb-6 leading-tight">Crafting Confidence,<br>One Stitch at a Time.</h1>
+      <p class="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed">
+        Founded on the belief that fashion is the ultimate form of self-expression. We don't just make clothes; we design moments.
+      </p>
+    </div>
+  </section>
+
+  <!-- The Philosophy Section -->
+  <section class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+      <div class="relative animate-fade-in-right group">
+        <!-- Floating background arch -->
+        <div class="absolute -inset-4 bg-rose/20 rounded-t-full transform -rotate-3 z-0 animate-float-bg"></div>
+        
+        <!-- The Image container with a unique reveal -->
+        <div class="relative z-10 w-full h-[600px] rounded-t-full shadow-2xl overflow-hidden animate-reveal-arch">
+          <ng-container *ngFor="let img of artImages; let i = index">
+            <img 
+              *ngIf="i === currentImageIndex"
+              [src]="img" 
+              alt="Art-based Clothing Design" 
+              class="absolute inset-0 w-full h-full object-cover object-top animate-fade-in-right group-hover:scale-110 transition-transform duration-[2000ms] ease-out"
+              style="animation-duration: 0.8s;"
+            >
+          </ng-container>
+        </div>
+      </div>
+      
+      <div class="animate-fade-in-left">
+        <h2 class="text-4xl md:text-5xl font-serif text-charcoal mb-8">The Art of <span class="text-burgundy italic">Making</span></h2>
+        <p class="text-gray-600 text-lg mb-6 leading-relaxed">
+          Every piece in our collection starts with a simple sketch and a profound respect for the materials. We source the finest fabrics from sustainable mills across the globe, ensuring that what touches your skin is as kind to the earth as it is luxurious.
+        </p>
+        <p class="text-gray-600 text-lg mb-8 leading-relaxed">
+          Our master tailors bring decades of experience to the cutting table, marrying traditional techniques with modern silhouettes to create garments that transcend fleeting trends.
+        </p>
+        <div class="grid grid-cols-2 gap-8 pt-8 border-t border-rose/30">
+          <div>
+            <h4 class="text-3xl font-serif text-burgundy mb-2">100+</h4>
+            <p class="text-sm uppercase tracking-widest text-gray-500 font-medium">Artisans</p>
+          </div>
+          <div>
+            <h4 class="text-3xl font-serif text-burgundy mb-2">0%</h4>
+            <p class="text-sm uppercase tracking-widest text-gray-500 font-medium">Waste Goal</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Values -->
+  <section class="py-24 bg-white border-y border-rose/30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl font-serif text-charcoal mb-16">Our Core Values</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+        <div class="flex flex-col items-center group">
+          <div class="h-20 w-20 rounded-full bg-cream flex items-center justify-center mb-6 group-hover:bg-burgundy group-hover:text-white transition-colors duration-500 text-charcoal">
+            <lucide-icon [img]="Scissors" class="h-8 w-8"></lucide-icon>
+          </div>
+          <h3 class="text-xl font-serif text-charcoal mb-3">Master Craftsmanship</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">Precision in every cut, perfection in every seam.</p>
+        </div>
+        
+        <div class="flex flex-col items-center group">
+          <div class="h-20 w-20 rounded-full bg-cream flex items-center justify-center mb-6 group-hover:bg-burgundy group-hover:text-white transition-colors duration-500 text-charcoal">
+            <lucide-icon [img]="Leaf" class="h-8 w-8"></lucide-icon>
+          </div>
+          <h3 class="text-xl font-serif text-charcoal mb-3">Conscious Creation</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">Sustainable practices from sketch to shipping.</p>
+        </div>
+        
+        <div class="flex flex-col items-center group">
+          <div class="h-20 w-20 rounded-full bg-cream flex items-center justify-center mb-6 group-hover:bg-burgundy group-hover:text-white transition-colors duration-500 text-charcoal">
+            <lucide-icon [img]="Heart" class="h-8 w-8"></lucide-icon>
+          </div>
+          <h3 class="text-xl font-serif text-charcoal mb-3">Ethical Production</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">Fair wages and safe environments for all our makers.</p>
+        </div>
+        
+        <div class="flex flex-col items-center group">
+          <div class="h-20 w-20 rounded-full bg-cream flex items-center justify-center mb-6 group-hover:bg-burgundy group-hover:text-white transition-colors duration-500 text-charcoal">
+            <lucide-icon [img]="Star" class="h-8 w-8"></lucide-icon>
+          </div>
+          <h3 class="text-xl font-serif text-charcoal mb-3">Timeless Design</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">Pieces designed to be cherished for generations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>

@@ -1,0 +1,108 @@
+<footer class="bg-charcoal text-gray-300 pt-16 pb-8 border-t border-charcoal relative overflow-hidden">
+  <!-- Subtle background pattern or gradient -->
+  <div class="absolute inset-0 opacity-5 pointer-events-none">
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="footer-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M0 40L40 0H20L0 20M40 40V20L20 40" fill="none" stroke="currentColor" stroke-width="1" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#footer-grid)" />
+    </svg>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 mb-12">
+      
+      <!-- Brand & Newsletter (Wider Column) -->
+      <div class="lg:col-span-5 pr-0 lg:pr-8">
+        <a routerLink="/" class="text-3xl font-serif font-bold tracking-[0.15em] text-white uppercase mb-4 block">
+          Made For You
+        </a>
+        <p class="text-gray-400 text-sm max-w-sm leading-relaxed mb-8">
+          Curated fashion for the modern muse. Join our inner circle to receive 10% off your first collection.
+        </p>
+        
+        <form class="relative group max-w-sm">
+          <input
+            type="email"
+            placeholder="Enter your email address"
+            class="w-full bg-transparent border-0 border-b border-gray-600 px-0 py-2 text-white placeholder-gray-500 text-sm focus:outline-none focus:ring-0 focus:border-white transition-colors"
+          >
+          <button
+            type="submit"
+            class="absolute right-0 top-1/2 -translate-y-1/2 text-xs font-semibold uppercase tracking-widest text-white hover:text-burgundy transition-colors px-2 py-2"
+          >
+            Subscribe
+          </button>
+        </form>
+      </div>
+
+      <!-- Shop Links -->
+      <div class="lg:col-span-2">
+        <h3 class="text-white font-serif font-semibold mb-5 uppercase tracking-widest text-xs">Shop</h3>
+        <ul class="space-y-3 text-sm font-medium">
+          <li><a routerLink="/new-arrivals" class="text-gray-400 hover:text-white transition-colors">New Arrivals</a></li>
+          <li><a routerLink="/category/dresses" class="text-gray-400 hover:text-white transition-colors">Dresses</a></li>
+          <li><a routerLink="/category/tops" class="text-gray-400 hover:text-white transition-colors">Tops</a></li>
+          <li><a routerLink="/collections" class="text-gray-400 hover:text-white transition-colors">Collections</a></li>
+          <li><a routerLink="/offers" class="text-gray-400 hover:text-white transition-colors">Offers</a></li>
+        </ul>
+      </div>
+
+      <!-- Help Links -->
+      <div class="lg:col-span-2">
+        <h3 class="text-white font-serif font-semibold mb-5 uppercase tracking-widest text-xs">Help</h3>
+        <ul class="space-y-3 text-sm font-medium">
+          <li><a routerLink="/contact" class="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+          <li><a routerLink="/shipping" class="text-gray-400 hover:text-white transition-colors">Shipping</a></li>
+          <li><a routerLink="/returns" class="text-gray-400 hover:text-white transition-colors">Returns</a></li>
+          <li><a routerLink="/size-guide" class="text-gray-400 hover:text-white transition-colors">Size Guide</a></li>
+          <li><a routerLink="/faqs" class="text-gray-400 hover:text-white transition-colors">FAQs</a></li>
+        </ul>
+      </div>
+
+      <!-- Company Links -->
+      <div class="lg:col-span-3">
+        <h3 class="text-white font-serif font-semibold mb-5 uppercase tracking-widest text-xs">Company</h3>
+        <ul class="space-y-3 text-sm font-medium">
+          <li><a routerLink="/about" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+          <!-- <li><a routerLink="/careers" class="text-gray-400 hover:text-white transition-colors">Careers</a></li> -->
+          <li><a routerLink="/privacy" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
+          <li><a routerLink="/terms" class="text-gray-400 hover:text-white transition-colors">Terms & Conditions</a></li>
+        </ul>
+      </div>
+
+    </div>
+    
+    <!-- Bottom Section: Legal & Socials -->
+    <div class="border-t border-gray-700/50 pt-6 flex flex-col md:flex-row justify-between items-center text-xs tracking-wider text-gray-500 uppercase gap-4">
+      <p>&copy; 2026 Made For You. All rights reserved.</p>
+      
+      <!-- Socials -->
+      <div class="flex space-x-4">
+        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+          <span class="sr-only">Instagram</span>
+          <lucide-icon [img]="Instagram" class="h-4 w-4"></lucide-icon>
+        </a>
+        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+          <span class="sr-only">Facebook</span>
+          <lucide-icon [img]="Facebook" class="h-4 w-4"></lucide-icon>
+        </a>
+        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+          <span class="sr-only">Twitter</span>
+          <lucide-icon [img]="Twitter" class="h-4 w-4"></lucide-icon>
+        </a>
+        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+          <span class="sr-only">YouTube</span>
+          <lucide-icon [img]="Youtube" class="h-4 w-4"></lucide-icon>
+        </a>
+      </div>
+      
+      <div class="font-serif font-medium text-gray-400 tracking-widest normal-case text-[10px] md:text-xs">
+        <span>Designed for you. Made for your moment.</span>
+      </div>
+    </div>
+  </div>
+</footer>

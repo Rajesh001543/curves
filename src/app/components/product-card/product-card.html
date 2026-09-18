@@ -1,0 +1,69 @@
+<div 
+  class="group relative flex flex-col bg-white rounded-2xl overflow-hidden transition-all duration-500 hover:shadow-xl border border-gray-100 h-full"
+  (mouseenter)="onMouseEnter()"
+  (mouseleave)="onMouseLeave()"
+  [routerLink]="['/product', product.id]"
+>
+  <!-- Image Container -->
+  <div class="relative aspect-[3/4] overflow-hidden bg-gray-100">
+
+
+    <!-- Product Image -->
+    <ng-container *ngIf="!product.images || product.images.length === 0">
+      <img 
+        [src]="product.image" 
+        [alt]="product.name"
+        class="w-full h-full object-contain object-center transition-transform duration-700 ease-out"
+      />
+    </ng-container>
+
+    <!-- Product Images Slider -->
+    <ng-container *ngIf="product.images && product.images.length > 0">
+      <img 
+        [src]="product.images[currentImageIndex]" 
+        [alt]="product.name"
+        class="w-full h-full object-contain object-center transition-transform duration-700 ease-out"
+      />
+
+      <!-- Dots Indicators -->
+      <div 
+        *ngIf="product.images.length > 1"
+        class="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+      >
+        <div 
+          *ngFor="let img of product.images; let i = index" 
+          class="w-1.5 h-1.5 rounded-full transition-all"
+          [class.bg-white]="i === currentImageIndex"
+          [class.scale-125]="i === currentImageIndex"
+          [class.bg-white/50]="i !== currentImageIndex"
+        ></div>
+      </div>
+    </ng-container>
+
+
+  </div>
+
+  <!-- Product Info -->
+  <div class="p-4 flex flex-col flex-grow">
+    <div class="flex justify-between items-start mb-1">
+      <p class="text-xs text-gray-500 font-medium tracking-wide uppercase">{{ product.category }}</p>
+      <div class="flex items-center">
+        <lucide-icon [img]="Star" class="h-3 w-3 fill-yellow-400 text-yellow-400"></lucide-icon>
+        <span class="text-xs text-gray-600 ml-1 font-medium">{{ product.rating }}</span>
+      </div>
+    </div>
+    
+    <h3 class="text-sm font-semibold text-charcoal mb-2 leading-tight group-hover:text-burgundy transition-colors line-clamp-2">
+      {{ product.name }}
+    </h3>
+    
+    <div class="mt-auto flex items-center gap-2">
+      <span class="text-sm font-bold" [class.text-burgundy]="hasDiscount" [class.text-charcoal]="!hasDiscount">
+        ₹{{ hasDiscount ? product.discountPrice : product.price }}
+      </span>
+      <span *ngIf="hasDiscount" class="text-xs text-gray-400 line-through">
+        ₹{{ product.price }}
+      </span>
+    </div>
+  </div>
+</div>
