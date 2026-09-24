@@ -2,7 +2,6 @@ import { Component, Input, Output, EventEmitter, inject, OnDestroy, ChangeDetect
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { LucideAngularModule, Heart, ShoppingBag, Eye, Star, ChevronLeft, ChevronRight } from 'lucide-angular';
-import { Button } from '../button/button';
 import { ProductService } from '../../services/product.service';
 
 export interface Product {
@@ -20,7 +19,7 @@ export interface Product {
 @Component({
   selector: 'app-product-card',
   standalone: true,
-  imports: [CommonModule, RouterLink, LucideAngularModule, Button],
+  imports: [CommonModule, RouterLink, LucideAngularModule],
   templateUrl: './product-card.html',
   styleUrl: './product-card.css',
   providers: [

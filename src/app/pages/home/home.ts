@@ -32,14 +32,14 @@ export class Home implements OnInit, OnDestroy {
     { name: 'Dresses', image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&auto=format&fit=crop&q=80', link: '/category/dresses' },
     { name: 'Tops', image: 'https://images.unsplash.com/photo-1516762689617-e1cffcef479d?w=800&auto=format&fit=crop&q=80', link: '/category/tops' },
     { name: 'Bottoms', image: 'https://images.unsplash.com/photo-1584370848010-d7fe6bc767ec?w=800&auto=format&fit=crop&q=80', link: '/category/bottoms' },
-    { name: 'Party Wear', image: 'https://images.unsplash.com/photo-1566737236500-c8ac43014a67?w=800&auto=format&fit=crop&q=80', link: '/category/party' },
+    { name: 'Party Wear', image: 'assets/party_dress_burgundy.jpg', link: '/category/party' },
     { name: 'Premium', image: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&auto=format&fit=crop&q=80', link: '/collections' },
   ];
 
   reviews = [
     { name: 'Sarah M.', text: 'The dress looked even better than I expected. Absolutely loved the quality!', rating: 5 },
     { name: 'Emily R.', text: 'Perfect fit and the customization was exactly what I wanted. Highly recommended.', rating: 5 },
-    { name: 'Jessica T.', text: 'Beautiful fabric and elegant design. Will definitely buy again from Made For You.', rating: 5 },
+    { name: 'Jessica T.', text: 'Beautiful fabric and elegant design. Will definitely buy again from CURVES.', rating: 5 },
     { name: 'Amanda L.', text: 'Stunning collection! Every piece feels like it was tailor-made for me.', rating: 5 },
     { name: 'Rachel C.', text: 'The attention to detail is phenomenal. I felt like a queen wearing their gown.', rating: 5 }
   ];

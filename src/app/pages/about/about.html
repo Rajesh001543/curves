@@ -1,18 +1,37 @@
 <div class="min-h-screen bg-cream font-sans overflow-x-hidden">
 
   <!-- Hero Section -->
-  <section class="relative h-[70vh] min-h-[600px] w-full bg-charcoal flex items-center justify-center overflow-hidden">
-    <div class="absolute inset-0 z-0">
-      <img src="assets/about_hero.jpg" alt="About Us Hero" class="w-full h-full object-cover opacity-60">
-      <div class="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/40 to-transparent"></div>
-    </div>
+  <section class="relative w-full min-h-[85vh] flex flex-col items-center justify-center overflow-hidden pt-36 pb-16">
     
-    <div class="relative z-10 text-center px-4 max-w-4xl mx-auto animate-fade-in-up">
-      <span class="text-burgundy uppercase tracking-[0.3em] font-semibold text-sm mb-4 block">Our Story</span>
-      <h1 class="text-5xl md:text-7xl font-serif text-white mb-6 leading-tight">Crafting Confidence,<br>One Stitch at a Time.</h1>
-      <p class="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed">
-        Founded on the belief that fashion is the ultimate form of self-expression. We don't just make clothes; we design moments.
-      </p>
+    <!-- Boutique Background Image (Sharp and clear) -->
+    <div class="absolute inset-0 z-0">
+      <img src="assets/boutique_bg_v2.jpg" alt="Boutique Background" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-black/10"></div>
+    </div>
+
+    <!-- Text Content -->
+    <div class="relative z-10 w-full flex flex-col justify-center items-center px-4 md:px-12 lg:px-20 max-w-6xl mx-auto">
+      <div class="relative w-full flex flex-col md:flex-row min-h-[550px] bg-white/70 backdrop-blur-md rounded-[2rem] shadow-2xl border border-white/50 overflow-hidden">
+        
+        <!-- Static Image Side (Full Height/Width of Left Half) -->
+        <div class="relative w-full md:w-5/12 h-[300px] md:h-auto">
+          <img src="assets/urvesphoto.PNG" alt="About Curves" class="absolute inset-0 w-full h-full object-cover">
+        </div>
+
+        <!-- Dynamic Text Side (Right Half) -->
+        <div class="relative w-full md:w-7/12 flex flex-col justify-center">
+          <ng-container *ngFor="let page of lookbookPages; let i = index">
+            <div *ngIf="i === currentLookbookIndex" class="animate-content-fade absolute inset-0 flex flex-col justify-center items-center md:items-start text-center md:text-left p-8 md:p-16 lg:p-20">
+              <span class="text-burgundy uppercase tracking-[0.4em] font-semibold text-sm mb-4 block">Our Story</span>
+              <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif text-charcoal mb-6 leading-[1.1]" [innerHTML]="page.title"></h1>
+              <p class="text-gray-800 text-lg md:text-xl font-light leading-relaxed max-w-xl">
+                {{ page.content }}
+              </p>
+            </div>
+          </ng-container>
+        </div>
+
+      </div>
     </div>
   </section>
 

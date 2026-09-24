@@ -9,7 +9,7 @@ import { Footer } from './components/footer/footer';
   imports: [RouterOutlet, Navbar, Footer],
   template: `
     <app-navbar></app-navbar>
-    <main class="min-h-screen pt-20">
+    <main class="min-h-screen">
       <router-outlet></router-outlet>
     </main>
     <app-footer></app-footer>

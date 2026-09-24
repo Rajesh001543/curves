@@ -3,35 +3,42 @@
   <section class="relative h-[90vh] min-h-[600px] flex items-center overflow-hidden">
     <!-- Background Image -->
     <div class="absolute inset-0 z-0">
-      <img 
-        src="assets/luxury_rack.jpg" 
-        alt="Fashion Hero" 
-        class="w-full h-full object-cover object-center"
-      />
-      <!-- Gradient Overlay (Darker on the left for text legibility) -->
-      <div class="absolute inset-0 bg-gradient-to-r from-charcoal/90 via-charcoal/50 to-transparent mix-blend-multiply"></div>
-      <div class="absolute inset-0 bg-gradient-to-t from-charcoal/30 to-transparent"></div>
+      <img src="assets/premium_hero_bg.jpg" alt="Fashion Hero" class="w-full h-full object-cover object-center" />
+      <!-- Gradient Overlay (Subtle dark fade for text legibility without muddying the HD image) -->
+      <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent">
+      </div>
+      <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
     </div>
 
     <!-- Content -->
     <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 md:pt-0">
       <div class="max-w-3xl">
-        <h1 class="text-6xl md:text-[5.5rem] lg:text-[7rem] font-serif font-bold text-white mb-6 tracking-tight drop-shadow-2xl leading-[1.05] opacity-0" style="animation: slideUp 1s ease-out 0.2s forwards;">
-          Made <span class="italic font-light text-champagne/90">For You</span>
+        <h1
+          class="text-6xl md:text-[5.5rem] lg:text-[7rem] font-serif font-bold text-white mb-6 tracking-tight drop-shadow-2xl leading-[1.05] opacity-0"
+          style="animation: slideUp 1s ease-out 0.2s forwards;">
+          CURVES
         </h1>
-        
-        <p class="text-lg md:text-xl text-gray-200 mb-12 max-w-2xl drop-shadow-md leading-relaxed font-light opacity-0 tracking-wide" style="animation: slideUp 1s ease-out 0.4s forwards;">
-          Where refined style meets individuality. Curated with a passion for quality, contemporary design, and timeless elegance, every piece is created for those who believe true style speaks without saying a word.
+
+        <p class="text-lg md:text-xl text-gray-200 mb-12 max-w-2xl drop-shadow-md leading-relaxed font-light opacity-0 tracking-wide"
+          style="animation: slideUp 1s ease-out 0.4s forwards;">
+          Introducing CURVES — where confidence meets effortless style. Designed for those who embrace their
+          individuality, our collections bring together flattering fits, modern silhouettes, and timeless details. Every
+          piece is made to celebrate your shape, elevate your everyday look, and make you feel confident wherever you
+          go. Own your curves. Own your style
         </p>
-        
+
         <div class="flex flex-col sm:flex-row gap-6 opacity-0" style="animation: slideUp 1s ease-out 0.6s forwards;">
           <!-- Refined Primary Button -->
-          <app-button variant="primary" size="lg" customClass="!px-12 !py-4 shadow-[0_8px_30px_rgb(0,0,0,0.3)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.5)] hover:-translate-y-1 transition-all duration-300 text-base tracking-[0.1em] uppercase font-semibold" (onClick)="router.navigate(['/collections'])">
+          <app-button variant="primary" size="lg"
+            customClass="!px-12 !py-4 shadow-[0_8px_30px_rgb(0,0,0,0.3)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.5)] hover:-translate-y-1 transition-all duration-300 text-base tracking-[0.1em] uppercase font-semibold"
+            (onClick)="router.navigate(['/collections'])">
             Shop Women
           </app-button>
-          
+
           <!-- Glassmorphism Outline Button -->
-          <app-button variant="outline" size="lg" customClass="!px-12 !py-4 !border-white/50 !text-white hover:!border-white hover:!bg-white/10 backdrop-blur-md bg-white/5 shadow-lg hover:-translate-y-1 transition-all duration-300 text-base tracking-[0.1em] uppercase font-semibold" (onClick)="router.navigate(['/collections'])">
+          <app-button variant="outline" size="lg"
+            customClass="!px-12 !py-4 !border-white/50 !text-white hover:!border-white hover:!bg-white/10 backdrop-blur-md bg-white/5 shadow-lg hover:-translate-y-1 transition-all duration-300 text-base tracking-[0.1em] uppercase font-semibold"
+            (onClick)="router.navigate(['/collections'])">
             Explore Collection
           </app-button>
         </div>
@@ -48,19 +55,14 @@
       </div>
 
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
-        <a 
-          *ngFor="let category of categories"
-          [routerLink]="category.link"
-          class="group relative aspect-[3/4] overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300"
-        >
-          <img 
-            [src]="category.image" 
-            [alt]="category.name"
-            class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-          />
+        <a *ngFor="let category of categories" [routerLink]="category.link"
+          class="group relative aspect-[3/4] overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300">
+          <img [src]="category.image" [alt]="category.name"
+            class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110" />
           <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300"></div>
           <div class="absolute inset-0 flex flex-col items-center justify-center p-4">
-            <h3 class="text-white text-xl md:text-2xl font-serif font-bold tracking-wide drop-shadow-md text-center transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+            <h3
+              class="text-white text-xl md:text-2xl font-serif font-bold tracking-wide drop-shadow-md text-center transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
               {{ category.name }}
             </h3>
             <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-2">
@@ -80,21 +82,17 @@
           <h2 class="text-3xl md:text-4xl font-serif font-bold text-charcoal mb-4">New Arrivals</h2>
           <div class="w-16 h-1 bg-burgundy"></div>
         </div>
-        <a routerLink="/new-arrivals" class="hidden md:flex items-center text-charcoal hover:text-burgundy font-medium transition-colors">
+        <a routerLink="/new-arrivals"
+          class="hidden md:flex items-center text-charcoal hover:text-burgundy font-medium transition-colors">
           View All <lucide-icon [img]="ArrowRight" class="h-4 w-4 ml-2"></lucide-icon>
         </a>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        <app-product-card 
-          *ngFor="let product of newArrivals" 
-          [product]="product"
-          (addToCart)="onAddToCart($event)"
-          (addToWishlist)="onAddToWishlist($event)"
-          (quickView)="onQuickView($event)"
-        ></app-product-card>
+        <app-product-card *ngFor="let product of newArrivals" [product]="product" (addToCart)="onAddToCart($event)"
+          (addToWishlist)="onAddToWishlist($event)" (quickView)="onQuickView($event)"></app-product-card>
       </div>
-      
+
       <div class="mt-10 text-center md:hidden">
         <app-button variant="outline">View All Arrivals</app-button>
       </div>
@@ -105,10 +103,11 @@
   <section class="py-24 bg-rose/20 relative overflow-hidden">
     <div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full bg-blush/50 blur-3xl z-0"></div>
     <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-champagne/40 blur-3xl z-0"></div>
-    
+
     <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
       <h2 class="text-4xl md:text-5xl font-serif font-bold text-charcoal mb-6">Your Style, Your Moment</h2>
-      <p class="text-xl md:text-2xl text-charcoal/80 mb-8 font-medium">Up to <span class="text-burgundy font-bold text-3xl md:text-4xl">40% OFF</span> on Premium Collections</p>
+      <p class="text-xl md:text-2xl text-charcoal/80 mb-8 font-medium">Up to <span
+          class="text-burgundy font-bold text-3xl md:text-4xl">40% OFF</span> on Premium Collections</p>
       <app-button variant="primary" size="lg">Shop Offers</app-button>
     </div>
   </section>
@@ -124,15 +123,16 @@
       <div class="max-w-3xl mx-auto relative min-h-[300px] flex items-center justify-center">
         <!-- We use a key to force re-render/animation on index change, but Angular doesn't have an easy key directive for this without an *ngFor wrapper, so we'll just use a container that fades -->
         <ng-container *ngFor="let review of reviews; let i = index">
-          <div *ngIf="i === currentReviewIndex" 
-               class="absolute inset-0 bg-cream p-10 md:p-12 rounded-3xl shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-center animate-fade-in text-center"
-               style="animation-duration: 0.8s;">
+          <div *ngIf="i === currentReviewIndex"
+            class="absolute inset-0 bg-cream p-10 md:p-12 rounded-3xl shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-center animate-fade-in text-center"
+            style="animation-duration: 0.8s;">
             <div class="flex items-center justify-center mb-6 text-yellow-400">
               <lucide-icon [img]="Star" class="h-6 w-6 fill-current" *ngFor="let j of [1,2,3,4,5]"></lucide-icon>
             </div>
             <p class="text-xl md:text-2xl text-gray-700 mb-8 italic leading-relaxed">"{{ review.text }}"</p>
             <div class="flex items-center justify-center mt-auto">
-              <div class="h-12 w-12 bg-rose rounded-full flex items-center justify-center text-white text-lg font-bold mr-4 shadow-sm">
+              <div
+                class="h-12 w-12 bg-rose rounded-full flex items-center justify-center text-white text-lg font-bold mr-4 shadow-sm">
                 {{ review.name.charAt(0) }}
               </div>
               <span class="font-bold text-lg text-charcoal">{{ review.name }}</span>
@@ -140,13 +140,12 @@
           </div>
         </ng-container>
       </div>
-      
+
       <!-- Carousel Indicators -->
       <div class="flex justify-center mt-10 gap-3">
-        <button *ngFor="let r of reviews; let i = index" 
-                (click)="currentReviewIndex = i; startReviewCarousel()"
-                class="w-3 h-3 rounded-full transition-all duration-300 focus:outline-none"
-                [ngClass]="i === currentReviewIndex ? 'bg-burgundy w-8' : 'bg-gray-300 hover:bg-gray-400'">
+        <button *ngFor="let r of reviews; let i = index" (click)="currentReviewIndex = i; startReviewCarousel()"
+          class="w-3 h-3 rounded-full transition-all duration-300 focus:outline-none"
+          [ngClass]="i === currentReviewIndex ? 'bg-burgundy w-8' : 'bg-gray-300 hover:bg-gray-400'">
         </button>
       </div>
     </div>

@@ -25,6 +25,26 @@ export class About implements OnInit, OnDestroy {
     'assets/IMG_6197.PNG',
     'assets/IMG_6204.PNG'
   ];
+
+  lookbookPages = [
+    {
+      image: 'assets/urvesphoto.PNG',
+      title: 'Crafting Confidence,<br>One Stitch at a Time.',
+      content: 'Founded on the belief that fashion is the ultimate form of self-expression. We don\'t just make clothes; we design moments.'
+    },
+    {
+      image: 'assets/IMG_6196.PNG',
+      title: 'Premium Fabrics,<br>Sustainable Choice.',
+      content: 'We source the finest materials from around the globe, ensuring exceptional quality and minimizing our environmental impact.'
+    },
+    {
+      image: 'assets/IMG_6197.PNG',
+      title: 'Designed for<br>Every Curve.',
+      content: 'Our silhouettes are tailored to celebrate real bodies, providing flattering fits that empower you every single day.'
+    }
+  ];
+  
+  currentLookbookIndex = 0;
   
   currentImageIndex = 0;
   imageInterval: any;
@@ -44,7 +64,8 @@ export class About implements OnInit, OnDestroy {
   startCarousel() {
     this.imageInterval = setInterval(() => {
       this.currentImageIndex = (this.currentImageIndex + 1) % this.artImages.length;
+      this.currentLookbookIndex = (this.currentLookbookIndex + 1) % this.lookbookPages.length;
       this.cdr.detectChanges();
-    }, 4000); // Change image every 4 seconds
+    }, 3000); // Change image every 3 seconds
   }
 }
