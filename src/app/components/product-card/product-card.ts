@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, inject, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, inject, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { LucideAngularModule, Heart, ShoppingBag, Eye, Star, ChevronLeft, ChevronRight } from 'lucide-angular';
@@ -29,7 +29,7 @@ export interface Product {
     }
   ]
 })
-export class ProductCard implements OnDestroy {
+export class ProductCard implements OnInit, OnDestroy {
   @Input() product!: Product;
   @Output() addToCart = new EventEmitter<Product>();
   @Output() addToWishlist = new EventEmitter<Product>();
@@ -49,19 +49,24 @@ export class ProductCard implements OnDestroy {
   currentImageIndex = 0;
   slideInterval: any;
 
+  ngOnInit() {
+    // Start sliding automatically when the component loads
+    // Add a slight random delay so all cards don't animate at the exact same millisecond
+    setTimeout(() => {
+      this.startAutoSlide();
+    }, Math.random() * 1000);
+  }
+
   ngOnDestroy() {
     this.stopAutoSlide();
   }
 
   onMouseEnter() {
     this.isHovered = true;
-    this.startAutoSlide();
   }
 
   onMouseLeave() {
     this.isHovered = false;
-    this.stopAutoSlide();
-    this.currentImageIndex = 0; // Optional: reset to first image when mouse leaves
   }
 
   startAutoSlide() {
@@ -69,7 +74,7 @@ export class ProductCard implements OnDestroy {
       this.slideInterval = setInterval(() => {
         this.currentImageIndex = (this.currentImageIndex + 1) % this.product.images!.length;
         this.cdr.detectChanges();
-      }, 1500); // Change image every 1.5 seconds
+      }, 4000); // Change image every 4 seconds for a relaxed, premium pace
     }
   }
 

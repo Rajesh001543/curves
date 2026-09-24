@@ -53,13 +53,21 @@
           </button>
         </div>
         
-        <!-- Mobile cart icon -->
-        <button routerLink="/cart" class="text-charcoal hover:text-burgundy sm:hidden relative">
-          <lucide-icon [img]="ShoppingBag" class="h-6 w-6"></lucide-icon>
-          <span *ngIf="cart().length > 0"
-            class="absolute -top-1 -right-1 bg-burgundy text-white text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center">{{
-            cart().length }}</span>
-        </button>
+        <!-- Mobile right icons -->
+        <div class="flex items-center space-x-4 sm:hidden ml-2">
+          <button routerLink="/wishlist" class="text-charcoal hover:text-burgundy relative">
+            <lucide-icon [img]="Heart" class="h-6 w-6"></lucide-icon>
+            <span *ngIf="wishlist().length > 0"
+              class="absolute -top-1 -right-1 bg-burgundy text-white text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center">{{
+              wishlist().length }}</span>
+          </button>
+          <button routerLink="/cart" class="text-charcoal hover:text-burgundy relative">
+            <lucide-icon [img]="ShoppingBag" class="h-6 w-6"></lucide-icon>
+            <span *ngIf="cart().length > 0"
+              class="absolute -top-1 -right-1 bg-burgundy text-white text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center">{{
+              cart().length }}</span>
+          </button>
+        </div>
       </div>
     </div>
   </nav>

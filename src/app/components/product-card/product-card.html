@@ -20,9 +20,13 @@
     <!-- Product Images Slider -->
     <ng-container *ngIf="product.images && product.images.length > 0">
       <img 
-        [src]="product.images[currentImageIndex]" 
+        *ngFor="let img of product.images; let i = index"
+        [src]="img" 
         [alt]="product.name"
-        class="w-full h-full object-contain object-center transition-transform duration-700 ease-out"
+        class="absolute inset-0 w-full h-full object-contain object-center transition-opacity duration-[1500ms] ease-in-out"
+        [class.opacity-100]="i === currentImageIndex"
+        [class.opacity-0]="i !== currentImageIndex"
+        [class.z-10]="i === currentImageIndex"
       />
 
       <!-- Dots Indicators -->
